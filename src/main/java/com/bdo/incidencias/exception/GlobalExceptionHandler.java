@@ -1,6 +1,7 @@
 package com.bdo.incidencias.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -92,6 +93,32 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND.getReasonPhrase(),
                 "El recurso solicitado no fue encontrado: " + ex.getResourcePath());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    // Manejo de Content-Type no soportado (ej: text/plain o application/xml) ->
+    // 415 Unsupported Media Type
+    @ExceptionHandler(org.springframework.web.HttpMediaTypeNotSupportedException.class)
+    public ResponseEntity<ErrorResponse> manejarTipoMedioNoSoportado(
+            org.springframework.web.HttpMediaTypeNotSupportedException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.UNSUPPORTED_MEDIA_TYPE.value(),
+                HttpStatus.UNSUPPORTED_MEDIA_TYPE.getReasonPhrase(),
+                "El Content-Type enviado no está soportado. Debe ser 'application/json'.");
+        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(error);
+    }
+
+    // Manejo de cabecera Accept no aceptable (ej: Accept: application/xml) ->
+    // 406 Not Acceptable
+    @ExceptionHandler(org.springframework.web.HttpMediaTypeNotAcceptableException.class)
+    public ResponseEntity<ErrorResponse> manejarNoAceptable(
+            org.springframework.web.HttpMediaTypeNotAcceptableException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.NOT_ACCEPTABLE.value(),
+                HttpStatus.NOT_ACCEPTABLE.getReasonPhrase(),
+                "El cliente solicitó un formato no soportado en Accept. La API solo produce 'application/json'.");
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(error);
     }
 
     // Manejo de 500 (Error interno del servidor)
