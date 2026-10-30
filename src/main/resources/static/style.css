@@ -1,0 +1,362 @@
+:root {
+    /* Paleta corporativa BDO */
+    --bdo-red: #ED1A3B;
+    --bdo-red-hover: #C5132F;
+    --bdo-blue: #002B49;
+    --bdo-blue-light: #0A4B75;
+    --bdo-dark: #22252A;
+    --bdo-gray-bg: #F5F7FA;
+    --bdo-card-bg: #FFFFFF;
+    --bdo-border: #E2E8F0;
+    --bdo-text-muted: #64748B;
+
+    /* Badges de Estado */
+    --estado-abierta-bg: #E0F2FE;
+    --estado-abierta-text: #0369A1;
+    --estado-encurso-bg: #FEF3C7;
+    --estado-encurso-text: #B45309;
+    --estado-cerrada-bg: #DCFCE7;
+    --estado-cerrada-text: #15803D;
+
+    /* Alertas */
+    --error-bg: #FEE2E2;
+    --error-border: #F87171;
+    --error-text: #991B1B;
+    --success-bg: #DCFCE7;
+    --success-border: #86EFAC;
+    --success-text: #166534;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bdo-gray-bg);
+    color: var(--bdo-dark);
+    line-height: 1.6;
+}
+
+/* Header Corporativo BDO */
+.app-header {
+    background-color: #FFFFFF;
+    border-bottom: 3px solid var(--bdo-red);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    padding: 1rem 0;
+}
+
+.container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-bdo-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+}
+
+.logo-bdo-text {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--bdo-blue);
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.logo-spain {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--bdo-red);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.header-titles h1 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--bdo-blue);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.badge-tag {
+    background-color: #F1F5F9;
+    color: var(--bdo-blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--bdo-red);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Contenido Principal */
+.main-content {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+/* Alertas */
+.alerta {
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+.alerta.error {
+    background-color: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error-text);
+}
+
+.alerta.success {
+    background-color: var(--success-bg);
+    border: 1px solid var(--success-border);
+    color: var(--success-text);
+}
+
+.alerta.oculta {
+    display: none;
+}
+
+.btn-cerrar-alerta {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: inherit;
+    line-height: 1;
+}
+
+/* Tarjetas */
+.card {
+    background-color: var(--bdo-card-bg);
+    border: 1px solid var(--bdo-border);
+    border-radius: 6px;
+    padding: 1.75rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--bdo-blue);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card h2::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 1.1rem;
+    background-color: var(--bdo-red);
+    border-radius: 2px;
+}
+
+/* Formulario Grid */
+.formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+}
+
+.campo-titulo {
+    grid-column: span 2;
+}
+
+.campo-descripcion {
+    grid-column: 1 / -1;
+}
+
+.btn-container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bdo-dark);
+}
+
+input, select, textarea {
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--bdo-border);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    outline: none;
+    color: var(--bdo-dark);
+    background-color: #FFFFFF;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--bdo-red);
+    box-shadow: 0 0 0 3px rgba(237, 26, 59, 0.12);
+}
+
+/* Botón estilo CTA de BDO ("LEER INFORME" / "CONTACTAR") */
+.btn {
+    padding: 0.75rem 1.75rem;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary {
+    background-color: var(--bdo-red);
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: var(--bdo-red-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.99);
+}
+
+/* Listado y Filtros */
+.listado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--bdo-border);
+}
+
+.listado-header h2 {
+    margin-bottom: 0;
+}
+
+.filtro-container {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.filtro-container label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--bdo-text-muted);
+}
+
+/* Tabla Estilizada */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.tabla-incidencias {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla-incidencias th,
+.tabla-incidencias td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--bdo-border);
+}
+
+.tabla-incidencias th {
+    background-color: #F8FAFC;
+    color: var(--bdo-blue);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tabla-incidencias tbody tr:hover {
+    background-color: #F8FAFC;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.badge-prioridad-ALTA { background: #FEE2E2; color: #991B1B; font-weight: 800; }
+.badge-prioridad-MEDIA { background: #FEF3C7; color: #92400E; }
+.badge-prioridad-BAJA { background: #F1F5F9; color: #475569; }
+
+.badge-estado-ABIERTA { background: var(--estado-abierta-bg); color: var(--estado-abierta-text); }
+.badge-estado-EN_CURSO { background: var(--estado-encurso-bg); color: var(--estado-encurso-text); }
+.badge-estado-CERRADA { background: var(--estado-cerrada-bg); color: var(--estado-cerrada-text); }
+
+/* Acciones */
+.select-cambiar-estado {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+
+.select-cambiar-estado:disabled {
+    background-color: #E2E8F0;
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .campo-titulo { grid-column: span 1; }
+    .header-container { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .listado-header { flex-direction: column; align-items: flex-start; }
+}
+

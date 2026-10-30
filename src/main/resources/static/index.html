@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDO Spain | Sistema de Gestión de Incidencias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Corporativo BDO -->
+    <header class="app-header">
+        <div class="container header-container">
+            <div class="logo-bdo-wrapper">
+                <span class="logo-bdo-text">|BDO</span>
+                <span class="logo-spain">Spain</span>
+            </div>
+            <div class="header-titles">
+                <h1>Gestión de Incidencias Técnicas</h1>
+            </div>
+            <div class="header-right">
+                <span class="badge-tag">Equipo de Soporte</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- Notificaciones de Alerta / Error / Éxito -->
+        <div id="alerta" class="alerta oculta">
+            <span id="mensajeAlerta"></span>
+            <button type="button" class="btn-cerrar-alerta" onclick="cerrarAlerta()">&times;</button>
+        </div>
+
+        <!-- Formulario Opcional para Crear Incidencia -->
+        <section class="card form-section">
+            <h2>Registrar Nueva Incidencia</h2>
+            <form id="formCrearIncidencia" class="formulario-grid">
+                <div class="form-group campo-titulo">
+                    <label for="titulo">Título de la Incidencia * (máx. 100 caracteres)</label>
+                    <input type="text" id="titulo" maxlength="100" placeholder="Ej: Error al conectar con VPN corporativa" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="prioridad">Prioridad *</label>
+                    <select id="prioridad" required>
+                        <option value="BAJA">BAJA</option>
+                        <option value="MEDIA" selected>MEDIA</option>
+                        <option value="ALTA">ALTA</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="usuarioId">Usuario Asignado (ID opcional: 1 o 2)</label>
+                    <input type="number" id="usuarioId" placeholder="ID de Usuario">
+                </div>
+
+                <div class="form-group campo-descripcion">
+                    <label for="descripcion">Descripción del Problema</label>
+                    <textarea id="descripcion" rows="2" placeholder="Detalle técnico de la incidencia reportada..."></textarea>
+                </div>
+
+                <div class="form-group btn-container">
+                    <button type="submit" class="btn btn-primary" id="btnCrear">Crear Incidencia</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Barra de Filtros y Control -->
+        <section class="card listado-section">
+            <div class="listado-header">
+                <h2>Incidencias Registradas</h2>
+                <div class="filtro-container">
+                    <label for="filtroEstado">Filtrar por estado:</label>
+                    <select id="filtroEstado">
+                        <option value="">Todas las incidencias</option>
+                        <option value="ABIERTA">ABIERTA</option>
+                        <option value="EN_CURSO">EN_CURSO</option>
+                        <option value="CERRADA">CERRADA</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tabla de Datos -->
+            <div class="table-responsive">
+                <table class="tabla-incidencias">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Prioridad</th>
+                            <th>Estado Actual</th>
+                            <th>Asignado a</th>
+                            <th>Fecha Registro</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTabla">
+                        <tr>
+                            <td colspan="7" class="text-center">Cargando incidencias...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
