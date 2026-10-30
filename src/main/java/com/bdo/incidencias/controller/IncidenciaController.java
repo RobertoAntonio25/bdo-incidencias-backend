@@ -64,4 +64,10 @@ public class IncidenciaController {
         return ResponseEntity.ok(incidenciaActualizada);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Incidencia> obtenerPorId(@PathVariable Long id) {
+        Incidencia incidencia = incidenciaService.obtenerPorId(id);
+        return ResponseEntity.ok(incidencia);
+    }
+
 }

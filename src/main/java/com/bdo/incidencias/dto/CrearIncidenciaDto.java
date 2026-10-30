@@ -11,6 +11,7 @@ public class CrearIncidenciaDto {
     @Size(max = 100, message = "El título no puede superar los 100 caracteres")
     private String titulo;
 
+    @Size(max = 1000, message = "La descripción no puede superar los 1000 caracteres")
     private String descripcion;
 
     @NotNull(message = "La prioridad es obligatoria (BAJA, MEDIA, ALTA)")

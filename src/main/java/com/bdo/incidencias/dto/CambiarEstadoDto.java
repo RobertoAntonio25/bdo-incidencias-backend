@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class CambiarEstadoDto {
 
-    @NotNull(message = "El nuevo estado es obliagtorio (ABIERTA, EN_CURSO, CERRADA")
+    @NotNull(message = "El nuevo estado es obligatorio (ABIERTA, EN_CURSO, CERRADA")
     private EstadoIncidencia estado;
 
     public CambiarEstadoDto() {

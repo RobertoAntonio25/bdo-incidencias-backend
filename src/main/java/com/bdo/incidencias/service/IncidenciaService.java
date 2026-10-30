@@ -70,4 +70,11 @@ public class IncidenciaService {
         incidencia.setEstado(nuevoEstado);
         return incidenciaRepository.save(incidencia);
     }
+
+    @Transactional(readOnly = true)
+    public Incidencia obtenerPorId(Long id) {
+        return incidenciaRepository.findById(id)
+                .orElseThrow(() -> new RecursoNoEncontradoException(
+                        "No se encontró la incidencia con ID: " + id));
+    }
 }
